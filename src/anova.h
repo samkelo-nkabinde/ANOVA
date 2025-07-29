@@ -1,14 +1,7 @@
 #ifndef ANOVA_H
 #define ANOVA_H
-
-typedef struct {
-
-    double* data;
-    int count;
-    char* name;
-
-} GROUP;
-
+#include "groups.h"
+#include <math.h>
 typedef struct {
 
     double SS_between; // Sum of Squares Between Groups
@@ -25,9 +18,10 @@ typedef struct {
     double F_statistic; // F-statistic
     double p_value;    // P-value
 
-} ANOVA;
+} Anova;
 
-ANOVA anova(GROUP** groups, int groups_count);
-void printAnova(ANOVA anova);
+
+Anova avova_test( group_t* group_array, int num_of_groups );
+void print_anova(Anova anova);
 
 #endif

@@ -3,41 +3,52 @@
 #include <stdio.h>
 #include <math.h>
 
-ANOVA singleFactorAnova( GROUP** groups, int groups_count )
+Anova avova_test( group_t* group_array, int num_of_groups )
 {
-    ANOVA anova = {0};
+    Anova anova = {0};
+    int total_obsevations = 0;
+    double grand_sum = 0.0;
+    double grand_sum_of_squres = 0.0;
+    double group_sums[num_of_groups];
 
-    int N = 0; //total number of observations in the groups
-    double groups_sum[groups_count]; //total number of observations in the groups
-    double sumX = 0.0; //
-    double sumXsq = 0.0;
-    double ss_between = 0.0;
-    double ss_within = 0.0;
-    double ss_total;
-    for(size_t i = 0; i < groups_count; ++i)
+    for(size_t i = 0; i < num_of_groups; ++i)
     {
-        N += groups[i] -> count;
-        groups_sum[i] = sum(groups[i]->data, groups[i] -> count);
-        sumX += groups_sum[i];
-        sumXsq += pow(groups_sum[i], 2);
-        ss_between += pow(groups_sum[i], 2) / groups[i] -> count;
+        total_obsevations += group_array[i] -> count;
+        grand_sum += sum(group_array[i] -> data, group_array[i] -> count);
+        grand_sum_of_squres += sumsq(group_array[i]->data, group_array[i] -> count);
+        group_sums[i] = sum(group_array[i] -> data, group_array[i] -> count);
     }
 
-    ss_within = sumXsq - ss_between;
-    ss_between = ss_between - (pow(sumX,2)/N)
+    double ss_between = 0.0;
+    double ss_within = 0.0;
+    double ss_total = 0.0;
 
+    for(size_t i = 0; i < num_of_groups; ++i)
+    {
+        ss_between += (group_sums[i] * group_sums[i]) / group_array[i]->count;
+    }
+
+    ss_within = grand_sum_of_squres - ss_between;
+    ss_between = ss_between - ((grand_sum * grand_sum) / total_obsevations);
     ss_total = ss_within + ss_between;
 
-    int df_between = groups_count - 1;
-    int df_within = N - groups_count;
+    int df_between = num_of_groups - 1;
+    int df_within = total_obsevations - num_of_groups;
     int df_total = df_between + df_within;
 
-    double MS_between = ss_between / df_between; // Mean Square Between Groups
-    double MS_within = df_within / ss_within;
 
-    double F_statistic = MS_between / MS_within;
+    double ms_between = ss_between / df_between; // Mean Square Between Groups
+    double ms_within = ss_within / df_within;  // Mean Square Within Groups
 
+    double f_statistic = ms_between / ms_within; // F-statistic
+    double p_value = 0 ;
 
+    anova = (Anova){ss_between , ss_within, ss_total, df_between, df_within, df_total, ms_between, ms_within, f_statistic, p_value};
+    return anova;
 }
-void printAnova(ANOVA anova);
+
+void print_anova(Anova anova)
+{
+    printf("%s\n","Working");
+}
 
