@@ -1,7 +1,7 @@
 #ifndef ANOVA_H
 #define ANOVA_H
 #include "groups.h"
-#include <math.h>
+
 typedef struct {
 
     double SS_between; // Sum of Squares Between Groups
@@ -22,6 +22,5 @@ typedef struct {
 
 
 Anova avova_test( group_t* group_array, int num_of_groups );
-void print_anova(Anova anova);
-
+void display_anova(Anova anova , group_t* group_array, int num_of_groups);
 #endif
