@@ -1,8 +1,8 @@
 #include "utils.h"
 #include "groups.h"
-group_t create_group(double data[], int count, char* name)
+groupPtr create_group(double data[], int count, char* name)
 {
-    group_t group = (group_t)malloc(sizeof(Group));
+    groupPtr group = (groupPtr)malloc(sizeof(Group));
     group -> data = data;
     group -> count = count;
     group -> name = string_alloc(name);

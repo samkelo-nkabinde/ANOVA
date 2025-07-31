@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-Anova avova_test( group_t* group_array, int num_of_groups )
+Anova avova_test( groupPtr* group_array, int num_of_groups )
 {
     Anova anova = {0};
 
@@ -45,13 +45,14 @@ Anova avova_test( group_t* group_array, int num_of_groups )
     return anova;
 }
 
-void display_anova(Anova anova , group_t* group_array, int num_of_groups)
+void display_anova(Anova anova , groupPtr* group_array, int num_of_groups)
 {
-    char line[] = "_________________________________________________________________________";
-    printf("%s\n", "Anova: Single Factor");
-    printf("%s\n", "SUMMARY");
-    printf("%s\n",line);
+
+    printf("%s\n\n", "Anova: Single Factor");
+    printf("\x1b[4m");
+    printf("%s%s\n", "SUMMARY","                                                ");
     printf("%s\t%s\t%s\t%s\t%s\n","Groups", "Count", "Sum", "Average", "Varience");
+    printf("\x1b[0m");
     for(size_t i = 0; i < num_of_groups; ++i)
     {
         printf("%s\t%d\t%.3lf\t%.3lf\t%.3lf\n",group_array[i]->name, group_array[i]->count, group_array[i]->sum, group_array[i]->average, group_array[i]->varience);

@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    group_t* groups = (group_t*)malloc(sizeof(group_t)*3);
+    groupPtr* groups = (groupPtr*)malloc(sizeof(groupPtr)*3);
     double method1[5] = {48, 73, 51, 65, 87};
     double method2[5] = {55, 85, 70, 69, 90};
     double method3[5] = {84, 68, 95, 74, 67};

@@ -21,6 +21,6 @@ typedef struct {
 } Anova;
 
 
-Anova avova_test( group_t* group_array, int num_of_groups );
-void display_anova(Anova anova , group_t* group_array, int num_of_groups);
+Anova avova_test( groupPtr* group_array, int num_of_groups );
+void display_anova(Anova anova , groupPtr* group_array, int num_of_groups);
 #endif

@@ -10,6 +10,6 @@ typedef struct {
     double varience;
 
 } Group;
-typedef Group* group_t;
-group_t create_group(double* data, int count, char* name);
+typedef Group* groupPtr;
+groupPtr create_group(double* data, int count, char* name);
 #endif
