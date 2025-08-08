@@ -1,6 +1,7 @@
 #ifndef ANOVA_H
 #define ANOVA_H
 #include "groups.h"
+#include <stdlib.h>
 
 typedef struct {
 
@@ -21,6 +22,6 @@ typedef struct {
 } Anova;
 
 
-Anova avova_test( groupPtr* group_array, int num_of_groups );
-void display_anova(Anova anova , groupPtr* group_array, int num_of_groups);
+Anova avova_test( groupPtr* group_array, size_t num_of_groups );
+void display_anova(Anova anova , groupPtr* group_array, size_t num_of_groups);
 #endif

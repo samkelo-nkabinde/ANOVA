@@ -11,7 +11,7 @@ double sum(const double* array, size_t array_size)
     return sum_result;
 }
 
-double sumsq(const double* array, int array_size)
+double sumsq(const double* array, size_t array_size)
 {
     double sum_squre_result = 0.0;
     for(size_t i = 0; i < array_size; ++i) sum_squre_result += array[i] * array[i];
