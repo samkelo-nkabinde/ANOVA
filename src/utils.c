@@ -56,8 +56,7 @@ static double f_of_t(double t, double a, double b)
     return (pow(t, a - 1) * pow(1 - t, b - 1));
 }
 
-static double
-simpson(double lower_limit, double upper_limit, double n, double a, double b)
+static double simpson(double lower_limit, double upper_limit, double n, double a, double b)
 {
     double h = (upper_limit - lower_limit) / n;
     double t = lower_limit;
@@ -82,18 +81,17 @@ simpson(double lower_limit, double upper_limit, double n, double a, double b)
     return sum * (h / 3.0);
 }
 
-static double
-integrate(double lower_limit, double upper_limit, double a, double b)
+static double integrate(double lower_limit, double upper_limit, double a, double b)
 {
     double n = 4;
     double integral;
-    double new_integral = simpson(lower_limit, lower_limit, n, a, b);
+    double new_integral = simpson(lower_limit, upper_limit, n, a, b);
 
     do
     {
         integral = new_integral;
         n *= 2;
-        new_integral = simpson(lower_limit, lower_limit, n, a, b);
+        new_integral = simpson(lower_limit, upper_limit, n, a, b);
     }
     while( fabs(integral - new_integral) >= EPSILON);
 

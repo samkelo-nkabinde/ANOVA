@@ -23,5 +23,10 @@ typedef struct {
 
 
 Anova avova_test( groupPtr* group_array, size_t num_of_groups );
+double sum(const double* array, size_t array_size);
+double mean(const double* array, size_t array_size);
+double varience(const double* array, size_t array_size);
+double sumsq(const double* array, size_t array_size);
+double p_value(double F_statistic, int df1, int df2);
 void display_anova(Anova anova , groupPtr* group_array, size_t num_of_groups);
 #endif
